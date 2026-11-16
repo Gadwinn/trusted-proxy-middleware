@@ -1,0 +1,68 @@
+{
+    "name": "gadwinn/trusted-proxy-middleware",
+    "description": "PSR-15 middleware that trusts X-Forwarded-* headers only from declared reverse proxies.",
+    "type": "library",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "G\\TrustedProxyMiddleware\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "G\\TrustedProxyMiddleware\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=8.3",
+        "psr/http-message": "^1.1 || ^2.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest@dev",
+        "phpdocumentor/shim": "*",
+        "phpstan/phpstan": "*",
+        "phpunit/phpunit": "*",
+        "povils/phpmnd": "*",
+        "squizlabs/php_codesniffer": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpdocumentor/shim": true
+        }
+    },
+    "scripts": {
+        "install-prod": "composer install --no-dev --classmap-authoritative",
+        "gen-docs": "php vendor/bin/phpdoc -d src -t docs/phpdoc",
+        "test-all": [
+            "@security-audit",
+            "@test-phpcbf",
+            "@test-cs",
+            "@test-stan",
+            "@test-unit",
+            "@test-mnd"
+        ],
+        "security-audit": "composer audit --no-dev --format=summary --abandoned=report",
+        "test-phpcbf": "php vendor/bin/phpcbf || exit 0",
+        "test-cs": "php vendor/bin/phpcs",
+        "test-stan": "php vendor/bin/phpstan",
+        "test-unit": "php vendor/bin/phpunit --no-coverage",
+        "test-unit-coverage": "php -d xdebug.mode=coverage vendor/bin/phpunit --coverage-text",
+        "test-mnd": "php vendor/bin/phpmnd ./src --hint --progress --strings --extensions=assign,operation,return,condition,switch_case"
+    },
+    "scripts-descriptions": {
+        "install-prod": "Install dependencies for production environment",
+        "gen-docs": "Generate API documentation using PHPDoc",
+        "test-all": "Run the complete test suite including all quality checks",
+        "security-audit": "Check for security vulnerabilities in dependencies",
+        "test-phpcbf": "Automatically fix code style issues using PHP Code Beautifier and Fixer",
+        "test-cs": "Run code style checks using PHP_CodeSniffer",
+        "test-stan": "Run static analysis using PHPStan",
+        "test-unit": "Run unit tests with PHPUnit",
+        "test-unit-coverage": "Run unit tests with PHPUnit and generate code coverage report",
+        "test-mnd": "Detect magic numbers in the codebase"
+    }
+}

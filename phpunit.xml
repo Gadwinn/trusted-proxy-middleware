@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit
+    displayDetailsOnTestsThatTriggerWarnings="true"
+    displayDetailsOnPhpunitDeprecations="true"
+    displayDetailsOnPhpunitNotices="true"
+    displayDetailsOnTestsThatTriggerNotices="true"
+    colors="true"
+>
+    <testsuites>
+        <testsuite name="trusted-proxy-middleware">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </source>
+
+    <coverage>
+        <report>
+            <html outputDirectory="logs/html-coverage" lowUpperBound="50" highLowerBound="90" />
+            <text outputFile="php://stdout" showUncoveredFiles="true" showOnlySummary="false" />
+        </report>
+    </coverage>
+</phpunit>
