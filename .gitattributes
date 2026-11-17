@@ -10,3 +10,4 @@
 /phpstan.neon       export-ignore
 /phpunit.xml        export-ignore
 /README.[Mm][Dd]    export-ignore
+/phpstan.neon.dist export-ignore
